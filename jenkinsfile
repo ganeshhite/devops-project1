@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_IMAGE = "gabeshhite33/devops-project1"
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git 'https://github.com/gabeshhite33/devops-project1.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t $DOCKER_IMAGE:latest .'
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                withDockerRegistry([credentialsId: 'dockerhub-cred']) {
+                    sh 'docker push $DOCKER_IMAGE:latest'
+                }
+            }
+        }
+
+    }
+}
