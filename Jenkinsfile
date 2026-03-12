@@ -22,7 +22,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 withDockerRegistry([credentialsId: 'dockerhub-cred', url: 'https://index.docker.io/v1/']) {
-                sh 'docker push gabeshhite33/devops-project1:latest                
+                sh 'docker push gabeshhite33/devops-project1:latest'                
                 }
             }
         }
