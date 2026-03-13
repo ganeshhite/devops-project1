@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-project1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: devops-project1
+  template:
+    metadata:
+      labels:
+        app: devops-project1
+    spec:
+      containers:
+      - name: devops-container
+        image: gabeshhite33/devops-project1:latest
+        ports:
+        - containerPort: 5000
